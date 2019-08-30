@@ -110,8 +110,8 @@ void writeLayerRecords(FILE* file, LayerRecords* layerRecords) {
 	fwrite(layerRecords->blendModeKey, 1, 4, file);
 	fwrite(&layerRecords->opacity, 1, 1, file);
 	fwrite(&layerRecords->clipping, 1, 1, file);
-	fwrite(layerRecords->flags, 1, 1, file);
-	fwrite(layerRecords->filter, 1, 1, file);
+	fwrite(&layerRecords->flags, 1, 1, file);
+	fwrite(&layerRecords->filter, 1, 1, file);
 	//...
 	writeLayerBlendingRanges(file, layerRecords->lbr);
 	//...
@@ -130,6 +130,10 @@ void writeChannelImageData(FILE* file, ChannelImageData* channelImageData) {
 	//...
 }
 
+void createChannelImageData(ChannelImageData* channelImageData) {
+	//...
+}
+
 typedef struct LayerInfo_t {
 	unsigned int length;
 	unsigned short layerCount;
@@ -137,17 +141,39 @@ typedef struct LayerInfo_t {
 	ChannelImageData* channelImageData;
 }LayerInfo;
 
-//...
+void writeLayerInfo(FILE* file, LayerInfo* layerInfo) {
+	//...
+}
+
+void createLayerInfo(LayerInfo* layerinfo) {
+	//...
+}
 
 typedef struct GlobalLayerMaskInfo_t {
 	unsigned int length;
 }GlobalLayerMaskInfo;
 
-typedef struct Information_t {
+void writeGlobalLayerMaskInfo(FILE* file, GlobalLayerMaskInfo* globalLayerMaskInfo) {
+	//...
+}
+
+void createGlobalLayerMaskInfo(GlobalLayerMaskInfo* globalLayerMaskInfo) {
+	//...
+}
+
+typedef struct LayerAndMaskInformation_t {
 	uint32_t informationLength = 0;
 	LayerInfo* layerInfo;
 	GlobalLayerMaskInfo* globalLayerMaskInfo;
-}Information;
+}LayerAndMaskInformation;
+
+void writeLayerAndMaskInformation(FILE* file, LayerAndMaskInformation information) {
+	//...
+}
+
+void createLayerAndMaskInfomation(LayerAndMaskInformation* information) {
+	//...
+}
 
 typedef struct ImageData_t {
 	ImageData_t(int len) {
@@ -160,11 +186,19 @@ typedef struct ImageData_t {
 	uchar* data;
 }ImageData;
 
+void writeImageData(FILE* file, ImageData imageData) {
+	//...
+}
+
+void createImageData(ImageData* imageData) {
+	//...
+}
+
 int main(void) {
 	FileHeader* fileHeader;
 	ColorModeData* colorModeData;
 	ImageResources* imageResources;
-	Information* information;
+	LayerAndMaskInformation* information;
 	//...
 
 	return 0;
